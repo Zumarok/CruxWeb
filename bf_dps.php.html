@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html class="transitionEnd video">
+
+    <head>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/prism.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+                    <title>Crux Gaming: Brave Frontier Web Project</title>
+        
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+        <script src="js/core.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/components.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="top">
+                <div>
+                    <a href="index.html"><img alt="Crux Gaming" src="img/Logo.png"/></a>
+                </div>                             
+                <ul class="nav nav-pills">
+                    <li><a href="index.php.html">Home</a></li>                    
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="bf_dps.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Games</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="nblocks.php.html">n Blocks</a></li>
+                            <li><a href="solitaire.php.html">Lucky Club Solitaire</a></li>
+                            <li><a href="zao.php.html">Zao</a></li>
+                            <li><a href="spacetime.php.html">Space-Time</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="bf_dps.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Other Projects</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bf_dps.php.html">BF Team Builder</a></li>
+                            <li><a href="dgb.php.html">Disc Golf Buddy</a></li>
+                            <li><a href="info.php.html">Info</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                                                     
+            </div>            
+            <div id="middle">
+
+<div class="Panel bordered Panel--large Panel--left">
+    <iframe  width="1120" height="630" src="https://www.youtube.com/embed/0mQpCNKSb2Y" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+
+<div class="bs-callout bs-callout-primary" id="callout-inputgroup-container-body">
+    <h4>General Details</h4>
+    <p>A web app designed to provide a useful tool for a popular mobile game. </p>
+    <p>The site consists of an interface that mimics the in-game UI, allowing the user to easily search all available
+    units and build a team. Each unit can be equipped, and clicking on a unit allows the user to view detailed information about it. This allows the user to build a team of units that they
+        may or may not have to make ideal teams for events in game quickly.</p>
+    <div class="space-normal"></div>
+    <h4>Technical Details</h4>
+    <p>
+        - Uses a custom PHP script to parse a large JSON file containing the game's data and inserts all relevant data into a SQL database.<br>
+        - Uses Ajax/jQuery to retrieve JSON data containing information and artwork about the unit from the game's wiki API.<br>
+        - Uses the Twitter typeahead.js and underscore.js libraries to query the database to produce search suggestions based on the units in the database.
+    </p>
+
+
+</div>
+<script src="js/prism.js"></script>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="bf_dps.php.html#collapse1">
+                    Screenshots</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img class="sld_img" src="img/bf_ss_1.jpg" >
+                        </div>
+
+                        <div class="item">
+                            <img class="sld_img" src="img/bf_ss_2.jpg">
+                        </div>
+
+                        <div class="item">
+                            <img class="sld_img" src="img/bf_ss_3.jpg" >
+                        </div>
+
+                        <div class="item">
+                            <img class="sld_img" src="img/bf_ss_4.jpg" >
+                        </div>
+
+                        <div class="item">
+                            <img class="sld_img" src="img/bf_ss_5.jpg" >
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="bf_dps.php.html#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="bf_dps.php.html#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="bootstrap_overrides" class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="bf_dps.php.html#collapse2">
+                    Code Example 1</a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+                <pre><code class="language-php">
+
+                    // import.php
+                    //    Takes the Game data in JSON format and parses out the needed info,
+                    //    then inserts into the database.
+
+                    &lt;?php
+                        // require the config file.
+                        require(__DIR__ . "/../includes/config.php");
+
+                        // check for correct usage
+                        if(count($argv) != 2)
+                        {
+                           exit("Invalid number of arguments. Usage: 'import &lt;path&gt;'\n");
+                        }
+
+                        // get the file path from the command line argument
+                        $path = $argv[1];
+
+                        // check if file exists
+                        if(!file_exists($path))
+                        {
+                            exit("($path) doesn't exist. Usage: 'import &lt;path&gt;'\n");
+                        }
+
+                        // check if file is readable
+                        if(!is_readable($path))
+                        {
+                            exit("($path) is not readable. Usage: 'import &lt;path&gt;'\n");
+                        }
+
+                        // read the json file contents
+                        $jsondata = file_get_contents($path);
+
+                        // convert json object to php associative array
+                        $jdata = json_decode($jsondata, true);
+
+                        // iterate through each unit
+                        foreach($jdata as $key =&gt; $data)
+                        {
+                            //print($key .  " " . $data["name"] . "\n");
+
+                            // Arena Type is a int 1-7 based off the ai type
+                            $arenaType;
+                            if (empty($data["ai"])) $arenaType = "0";
+                            else
+                            {
+                                if($data["ai"][0]["target conditions"] === "random" && $data["ai"][0]["target type"] === "party") // type 1
+                                    $arenaType = "1";
+                                else if($data["ai"][0]["target conditions"] === "hp_50pr_over" && $data["ai"][0]["target type"] === "enemy") // type 2
+                                    $arenaType = "2";
+                                else if($data["ai"][0]["target conditions"] === "random" && $data["ai"][0]["target type"] === "enemy") // type 3
+                                    $arenaType = "3";
+                                else if($data["ai"][0]["target conditions"] === "hp_50pr_under" && $data["ai"][0]["target type"] === "enemy") // type 4
+                                    $arenaType = "4";
+                                else if($data["ai"][0]["target conditions"] === "hp_50pr_under" && $data["ai"][0]["target type"] === "party") // type 5
+                                    $arenaType = "5";
+                                else if($data["ai"][0]["target conditions"] === "hp_25pr_under" && $data["ai"][0]["target type"] === "party") // type 6
+                                    $arenaType = "6";
+                                else if($data["ai"][0]["target conditions"] === "hp_75pr_under" && $data["ai"][0]["target type"] === "party") // type 7
+                                    $arenaType = "7";
+                            }
+
+
+                            //insert the needed info into the unit table
+                            query("INSERT INTO `unit`(`id`, `name`, `rarity`, `cost`, `element`, `hits`, `lord damage range`, `max bc generated`,
+                                `stats`, `imp`, `leader skill`, `extra skill`, `bb`, `sbb`, `ubb`, `ai`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", $key, $data["name"],
+                                $data["rarity"], $data["cost"], strtoupper($data["element"]), $data["hits"], $data["lord damage range"], $data["max bc generated"],
+                                json_encode($data["stats"]), json_encode($data["imp"]), empty($data["leader skill"]) ? "&lt;NONE&gt;" : json_encode($data["leader skill"]),
+                                empty($data["extra skill"]) ? "&lt;NONE&gt;" : json_encode($data["extra skill"]), empty($data["bb"]) ? "&lt;NONE&gt;" : json_encode($data["bb"]),
+                                empty($data["sbb"]) ? "&lt;NONE&gt;" : json_encode($data["sbb"]), empty($data["ubb"]) ? "&lt;NONE&gt;" : json_encode($data["ubb"]), $arenaType);
+                        }
+
+                    ?&gt;
+
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="bf_dps.php.html#collapse3">
+                    Code Example 2</a>
+            </h4>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+
+
+                <pre><code class="language-javascript">
+                        /**
+                         * scripts.js
+                         *
+                         * Global JavaScript.
+                         */
+
+                        // Holds the unit data as an object for each of the selected units
+                        var Units = Array(6);
+
+                        // Holds the sphere data as an object for each of the selected spheres
+                        var Spheres = Array(12);
+
+                        // The typing for each of the selected units, defaults to lord
+                        var UnitTypes = ["_lord", "_lord", "_lord", "_lord", "_lord", "_lord"];
+
+                        // The index of the currently selected unit/sphere
+                        var SelectedIndex = 0;
+
+                        // an array of the unit info window type buttons
+                        var TypeBtns;
+
+                        // an array of hover areas for extra info
+                        var HoverAreas;
+
+
+                        // execute when the DOM is fully loaded
+                        $(function () {
+                            // disable click and drag
+                            $("#Table_01").on("dragstart", function (event) { event.preventDefault(); });
+
+                            // put each unit and sphere div element into the buttons array
+                            var buttons = [$("#unit1"), $("#unit2"), $("#unit3"), $("#unit4"), $("#unit5"), $("#unit6"),
+                                $("#sphclk1"), $("#sphclk2"), $("#sphclk3"), $("#sphclk4"), $("#sphclk5"), $("#sphclk6"),
+                                $("#sphclk7"), $("#sphclk8"), $("#sphclk9"), $("#sphclk10"), $("#sphclk11"), $("#sphclk12")];
+
+                            // call OnButtonClick whenever any unit or sphere div is clicked
+                            $.each(buttons, function (index, value) {
+                                value.click(function() {
+                                    OnButtonClick(index);
+                                });
+                            });
+
+                            // add click listener functions to the unit info window buttons
+                            $("#UExit").click(function() {
+                                $("#UInfoWindow").hide("fast");
+                            });
+                            TypeBtns = [$("#UTypeAClk"), $("#UTypeBClk"), $("#UTypeGClk"), $("#UTypeLClk"), $("#UTypeOClk")];
+                            $.each(TypeBtns, function (index, value) {
+                                value.click(function() {
+                                    $.each(TypeBtns, function (index, value) {
+                                        var e = value["selector"].replace("Clk", "");
+                                        $(e).hide(0);
+                                    });
+                                    var e = value["selector"].replace("Clk", "");
+                                    $(e).show(0);
+                                    UnitTypes[SelectedIndex] = index === 0 ? "anima" : index === 1 ? "breaker" : index === 2 ? "guardian" : index === 3 ? "_lord" : "oracle";
+                                    UnitInfoBox();
+                                });
+                            });
+
+                            // Add the areas to register hover events
+                            // HoverAreas = [$("#UDef"), $("#UArenaType"), $("#UAtk"),  ]
+                            HoverAreas = [
+                                $("#UCost"), $("#UTitle"), $("#UArenaType"), $("#UHps"), $("#UAtk"), $("#UDef"), $("#URec"), $("#UImpHps"), $("#UImpAtk"), $("#UImpDef"), $("#UImpRec"),
+                                $("#ULS"), $("#UES"), $("#UBB"), $("#USBB"), $("#UUBB"), $("#UTypeAClk"), $("#UTypeBClk"), $("#UTypeGClk"), $("#UTypeLClk"), $("#UTypeOClk")
+                            ];
+                            $.each(HoverAreas, function(index, value) {
+                                value.mouseenter(function () {
+                                    // output raw json data (for now) about the skill to the extra info window
+                                    var u = Units[SelectedIndex];
+                                    var s = "";
+                                    switch (value["selector"]) {
+                                        case "#UArenaType":
+                                            switch (u["ai"]) {
+                                            case "1":
+                                                s = "&lt;p&gt;60% chance to use BB/SBB with no requirements. &lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position doesn't matter.&lt;/strong&gt;&lt;/p&gt;";
+                                                break;
+                                                case "2":
+                                                    s = "&lt;p&gt;68% chance to use BB/SBB if any enemy is above 50% HPs, 20% chance otherwise.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position near the top of the team.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                                case "3":
+                                                    s = "&lt;p&gt;68% chance to use BB/SBB with no requirements.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position doesn't matter.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                                case "4":
+                                                    s = "&lt;p&gt;72% chance to use BB/SBB if any enemy is below 50% HPs, 30% chance otherwise.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position near the bottom of the team.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                                case "5":
+                                                    s = "&lt;p&gt;84% chance to use BB/SBB if any party member is below 50% HPs, 20% chance otherwise.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position doesn't matter.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                                case "6":
+                                                    s = "&lt;p&gt;100% chance to use BB/SBB if any party(healer unit) or enemy(dps unit) is below 25% HPs, 0% chance otherwise.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position toward the middle/bottom of the team.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                                case "7":
+                                                    s = "&lt;p&gt;100% chance to use BB/SBB if any party member is below 75% HPs, 0% chance otherwise.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Position doesn't matter.&lt;/strong&gt;&lt;/p&gt;";
+                                                    break;
+                                            }
+                                            break;
+                                    case "#ULS":
+                                        s = u["leader skill"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : JSON.stringify(JSON.parse(u["leader skill"])["effects"], null, 2);
+                                        break;
+                                    case "#UES":
+                                        s = u["extra skill"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : JSON.stringify(JSON.parse(u["extra skill"])["effects"], null, 2);
+                                        break;
+                                    case "#UBB":
+                                        s = u["bb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : JSON.stringify(JSON.parse(u["bb"])["levels"][9]["effects"], null, 2);
+                                        break;
+                                    case "#USBB":
+                                        s = u["sbb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : JSON.stringify(JSON.parse(u["sbb"])["levels"][9]["effects"], null, 2);
+                                        break;
+                                    case "#UUBB":
+                                        s = u["ubb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : JSON.stringify(JSON.parse(u["ubb"])["levels"][9]["effects"], null, 2);
+                                        break;
+                                    }
+                                    // output the data and change the font size if needed
+                                    $("#UExInfo").css("font-size", (s.length &gt; 800 ? "x-small" : s.length &gt; 565 ? "smaller" : s.length &gt; 200 ? "inherit" : "large")).html(s);
+                                }).mouseleave(function (a) {
+                                    $("#UExInfo").html("");
+                                });
+                            });
+                        });
+
+                        /**
+                         * called when a unit or sphere div is clicked
+                         * toggle the visibility of the search form and info window
+                         */
+                        function OnButtonClick(index) {
+                            // global copy for lookahead source
+                            SelectedIndex = index;
+
+                            // configure typeahead
+                            configure();
+
+                            // change the placeholder text in the search form and erase any current input
+                            if (SelectedIndex &lt; 6)
+                                $("#q").attr("placeholder", "UNIT" + (SelectedIndex + 1) + "  : Unit Name, Rarity, Element").val("");
+                            else
+                                $("#q").attr("placeholder", "UNIT" + (SelectedIndex % 6 + 1) + "(SPHERE " + (SelectedIndex &lt; 12 ? 1 : 2) + ") : Sphere Name").val("");
+
+                            // show the form
+                            $("#form").show("fast");
+
+                            // give focus to text box
+                            $("#q").focus();
+
+                            // show the unit info window
+                            UnitInfoBox();
+                        }
+
+                        /**
+                         * Toggles all unit type buttons off and enables the correct one
+                         */
+                        function InitTypeButtons() {
+                            $.each(TypeBtns, function (index, value) {
+                                var e = value["selector"].replace("Clk", "");
+                                $(e).hide(0);
+                            });
+                            var t = UnitTypes[SelectedIndex];
+                            var e ="#UType" + (t === "anima" ? "A" : t === "breaker" ? "B" : t === "guardian" ? "G" : t === "_lord" ? "L" : "O" );
+                            $(e).show();
+                        }
+
+                        /**
+                         * Shows info for the hovered unit or sphere.
+                         */
+                        function UnitInfoBox() {
+                            // show info about the hovered unit, do nothing if the slot is empty
+                            if (Units[SelectedIndex] === undefined) return;
+
+                            InitTypeButtons();
+                            var u = Units[SelectedIndex];
+                            $("#UInfoWindow").children("h2").html(u["name"]);
+                            $("#UTitle").html(u["rarity"] + "* " + u["name"]).css("color", u["element"] === "FIRE" ? "red" : u["element"] === "WATER" ? "#008fd8" : u["element"] === "THUNDER" ? "yellow" :
+                                u["element"] === "EARTH" ? "green" : u["element"] === "LIGHT" ? "white" : u["element"] === "DARK" ? "purple" : "white");
+                            $("#UCost").html(u["cost"]);
+                            $("#UArenaType").html(u["ai"]);
+                            $("#ULS").html(u["leader skill"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : "&lt;strong&gt;" + JSON.parse(u["leader skill"])["name"] + "&lt;/strong&gt; - " + JSON.parse(u["leader skill"])["desc"]);
+                            $("#UES").html(u["extra skill"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : "&lt;strong&gt;" + JSON.parse(u["extra skill"])["name"] + "&lt;/strong&gt; - " + JSON.parse(u["extra skill"])["desc"]);
+                            $("#UBB").html(u["bb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : "&lt;strong&gt;" + JSON.parse(u["bb"])["name"] + "&lt;/strong&gt; - " + JSON.parse(u["bb"])["desc"]);
+                            $("#USBB").html(u["sbb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : "&lt;strong&gt;" + JSON.parse(u["sbb"])["name"] + "&lt;/strong&gt; - " + JSON.parse(u["sbb"])["desc"]);
+                            $("#UUBB").html(u["ubb"] === "&lt;NONE&gt;" ? "&lt;strong&gt;NONE&lt;/strong&gt;" : "&lt;strong&gt;" + JSON.parse(u["ubb"])["name"] + "&lt;/strong&gt; - " + JSON.parse(u["ubb"])["desc"]);
+                            $("#UHps").html((UnitTypes[SelectedIndex] === "anima" ? Math.floor((JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["hp max"] + JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["hp min"]) / 2) :
+                                JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["hp"]) + parseInt(JSON.parse(u["imp"])["max hp"])); //add sphere stats here
+                            $("#UAtk").html((UnitTypes[SelectedIndex] === "breaker" ? (JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["atk max"] + JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["atk min"]) / 2 :
+                                JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["atk"]) + parseInt(JSON.parse(u["imp"])["max atk"])); //add sphere stats here
+                            $("#UDef").html((UnitTypes[SelectedIndex] === "breaker" || UnitTypes[SelectedIndex] === "guardian" || UnitTypes[SelectedIndex] === "oracle" ?
+                                (JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["def max"] + JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["def min"]) / 2 :
+                                JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["def"]) + parseInt(JSON.parse(u["imp"])["max def"])); //add sphere stats here
+                            $("#URec").html((UnitTypes[SelectedIndex] === "anima" || UnitTypes[SelectedIndex] === "guardian" || UnitTypes[SelectedIndex] === "oracle" ?
+                                (JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["rec max"] + JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["rec min"]) / 2 :
+                                JSON.parse(u["stats"])[UnitTypes[SelectedIndex]]["rec"]) + parseInt(JSON.parse(u["imp"])["max rec"])); //add sphere stats here
+                            $("#UImpHps").html(parseInt(JSON.parse(u["imp"])["max hp"]));
+                            $("#UImpAtk").html(parseInt(JSON.parse(u["imp"])["max atk"]));
+                            $("#UImpDef").html(parseInt(JSON.parse(u["imp"])["max def"]));
+                            $("#UImpRec").html(parseInt(JSON.parse(u["imp"])["max rec"]));
+
+                            // show the window
+                            $("#UInfoWindow").show("fast");
+                        }
+
+
+                        /**
+                         * Hides the search box and resets the SelectedElement var
+                         */
+                        function HideForm() {
+                            $("#form").hide("fast");
+                        }
+
+                        /**
+                         * Configures typeahead
+                         */
+                        function configure()
+                        {
+                            // configure typeahead
+                            // https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md
+                            $("#q").typeahead({
+                                autoselect: true,
+                                highlight: true,
+                                minLength: 1
+                            },
+                            {
+                                source: search,
+                                templates: {
+                                    empty: "nothing found yet",
+                                    suggestion: _.template("&lt;p&gt;&lt;%- name %&gt;&lt;% if (typeof(rarity) !== 'undefined')" +
+                                        "{ %&gt;, &lt;%- rarity %&gt;*&lt;% }" +
+                                        " else if (typeof(sphere_type_text) !== 'undefined')" +
+                                        "{ %&gt;, &lt;%- sphere_type_text %&gt;&lt;% " +
+                                        "} %&gt;&lt;/p&gt;")
+                                }
+                            });
+
+                            // get image for selected unit from http://bravefrontierglobal.wikia.com/
+                            // using the wikia API http://bravefrontierglobal.wikia.com/api/v1/#!/Articles/getDetails_get_1
+                            // ex.: http://bravefrontierglobal.wikia.com/api.php?action=query&titles=Gazia&prop=imageinfo&iiprop=url&format=json
+                            $("#q").on("typeahead:selected", function (eventObject, suggestion, name) {
+
+                                if (SelectedIndex &lt; 6) {
+
+                                    // create the query string for the api
+                                    var parameters = { query: encodeURI(suggestion.name) + "&abstract=100&width=115&height=299" }
+
+                                    // get the image for this unit
+                                    $.getJSON("api.php", parameters)
+                                        .done(function (data, textStatus, jqXHR) {
+                                            //get the image title and url from the fetched obj
+                                            var title = "", thmb = "";
+                                            var obj = data["items"][Object.keys(data["items"])[0]];
+                                            if (obj) {
+                                                title = obj["title"];
+                                                thmb = obj["thumbnail"];
+                                            }
+
+                                            // insert the data into the correct div
+                                            var elem = "#u" + (SelectedIndex + 1).toString();
+                                            $(elem).children("img").attr({ src: thmb, alt: title });
+                                            elem = "#ut" + (SelectedIndex + 1).toString();
+                                            var t = title.split(" ");
+                                            var o = "&lt;h5&gt;" + suggestion["rarity"] + "* ";
+                                            for (var i = 0; i &lt; t.length - 1; i++) {
+                                                o += t[i] + " ";
+                                            }
+                                            o += "&lt;/h5&gt;&lt;h4&gt;" + t[t.length - 1] + "&lt;/h4&gt;";
+                                            $(elem).html(o);
+                                            // store the selected unit data in the Units array
+                                            Units[SelectedIndex] = suggestion;
+
+                                            // reset unit type
+                                            UnitTypes[SelectedIndex] = "_lord";
+
+                                            // hide query box
+                                            HideForm();
+
+                                            // show unit info window
+                                            UnitInfoBox();
+                                        })
+                                        .fail(function(jqXHR, textStatus, errorThrown) {
+                                            // log error to browser's console
+                                            console.log(errorThrown.toString());
+                                        });
+                                } else {
+
+                                    // insert the data into the correct div
+                                    var uo = (SelectedIndex % 6 + 1).toString() + "_" + (SelectedIndex &lt; 12 ? 1 : 2).toString();
+                                    $("#sphTxt" + uo).css("font-size", suggestion["name"].length &lt;= 10 ? "" : suggestion["name"].length &lt; 24 ? "small" : "smaller");
+                                    $("#sphTxt" + uo).css("padding-top", suggestion["name"].length &lt;= 12 ? "5px" : suggestion["name"].length &lt; 24 ? "2px" : "0");
+                                    $("#sphTxt" + uo).html(suggestion["name"]);
+                                    $("#sphOrb" + uo).show("slow");
+
+                                    // store the selected sphere data in the Spheres array
+                                    HideForm();
+                                    Spheres[SelectedIndex - 6] = suggestion;
+                                }
+                            });
+
+                            // hide text box when it loses focus
+                            $("#q").focusout(function(eventData) {
+                                HideForm();
+                            });
+
+                        }
+
+                        /**
+                         * Searches database for typeahead's suggestions.
+                         */
+                        function search(query, cb)
+                        {
+                            // get places matching query (asynchronously
+                            var parameters = {
+                                input: query
+                            };
+                            $.getJSON(SelectedIndex &lt; 6 ? "searchUnit.php" : "searchSphere.php", parameters)
+                            .done(function(data, textStatus, jqXHR) {
+                                // call typeahead's callback with search results (i.e., places)
+                                cb(data);
+                            })
+                            .fail(function(jqXHR, textStatus, errorThrown) {
+                                // log error to browser's console
+                                console.log(errorThrown.toString());
+                            });
+                        }
+
+
+
+
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <div id="bottom">
+                Copyright &#169; Nicholus Huber / Crux Gaming
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

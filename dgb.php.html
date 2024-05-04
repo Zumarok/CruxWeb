@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="transitionEnd video">
+
+    <head>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/prism.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+                    <title>Crux Gaming: Disc Golf Buddy</title>
+        
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+        <script src="js/core.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/components.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="top">
+                <div>
+                    <a href="index.html"><img alt="Crux Gaming" src="img/Logo.png"/></a>
+                </div>                             
+                <ul class="nav nav-pills">
+                    <li><a href="index.php.html">Home</a></li>                    
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="dgb.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Games</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="nblocks.php.html">n Blocks</a></li>
+                            <li><a href="solitaire.php.html">Lucky Club Solitaire</a></li>
+                            <li><a href="zao.php.html">Zao</a></li>
+                            <li><a href="spacetime.php.html">Space-Time</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="dgb.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Other Projects</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bf_dps.php.html">BF Team Builder</a></li>
+                            <li><a href="dgb.php.html">Disc Golf Buddy</a></li>
+                            <li><a href="info.php.html">Info</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                                                     
+            </div>            
+            <div id="middle">
+
+<!--<div class="Panel bordered Panel--large Panel--left">
+    <video data-src="/img/nblocks1.webm" loop="loop" muted="muted" class="Panel-video Panel-bg"></video>
+    <div class="Panel-area SyncHeight-item">
+        <div class="Panel-box">
+            <div class="Panel-content">
+                <div class="Panel-title">n Blocks</div>
+                <div class="Content Content--onDark Panel-desc">A challenging, fun and free puzzle game for Android &amp; iOS!</div>
+                <div class="Panel-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.crux.nblocks" class="Button Button--ghost Panel-button">
+                        <div class="Button-outer">
+                            <div class="Button-inner">
+                                <div class="Button-label">Android</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://itunes.apple.com/us/app/n-blocks-free-strategy-puzzle/id1121086918?ls=1&mt=8" class="Button Button--ghost Panel-button">
+                        <div class="Button-outer">
+                            <div class="Button-inner">
+                                <div class="Button-label">iOS</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="bs-callout bs-callout-primary" id="callout-inputgroup-container-body">
+    <h4>Disc Golf Buddy General Details</h4>
+    <p>In development for iOS and Android devices, Disc Golf Buddy is a way for disc golf clubs and it's members to
+        quickly calculate tag sorting at the end of a round, as well as provide a web portal to easily access club standings. </p>
+    <div class="space-normal"></div>
+    <h4>Technical Details</h4>
+    <p>
+        - Developed in Xamarin Forms for Visual Studio and programmed in C#.<br>
+        - Utilizes Amazon Web Services for user authentication and remote database and storage functions. <br>
+        - A custom Developer Authentication Mechanism developed using a serverless approach by taking advantage of AWS Lambda,
+        DynamoDB and Cognito along with other AWS services. <br>
+        - Local data stored using SQLite. <br>
+        - Soon to be published on Apple's App Store and Google Play.
+    </p>
+
+
+</div>
+<script src="js/prism.js"></script>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="dgb.php.html#collapse1">
+                    Code Example 1 </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <pre><code class="language-xml">
+                    /**
+                    * LoadPage.xaml
+                    * LoadPage XAML layout.
+                    * NicholusHuber@gmail.com
+                    */
+                    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+                    &lt;ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                 x:Class="DGB.LoadPage"&gt;
+
+                        &lt;StackLayout x:Name="_stackLayoutMain" Orientation="Vertical" HorizontalOptions="Center" &gt;
+
+                            &lt;Image x:Name="_imageTextLogo" Source="intropagetextlogo.jpg" /&gt;
+
+                            &lt;Grid x:Name="_gridMainLabels" ColumnSpacing="5" BackgroundColor="Black" &gt;
+                                &lt;Label x:Name="_labelName" Text="GAME NAME" Grid.Column="0" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"/&gt;
+                                &lt;Label x:Name="_labelDate" Text="LAST MODIFIED" Grid.Column="1"  VerticalOptions="Center" TextColor="White" FontAttributes="Bold"/&gt;
+                            &lt;/Grid&gt;
+
+                            &lt;ListView x:Name="_listViewMain" /&gt;
+
+                            &lt;Button x:Name="_buttonLoad" Text="Load Game" Clicked="LoadButton_OnClicked" IsEnabled="False"/&gt;
+                            &lt;Button x:Name="_buttonDelete" Text="Delete Game" Clicked="DeleteButton_OnClicked" IsEnabled="False"/&gt;
+                            &lt;Button x:Name="_buttonCancel" Text="Cancel" Clicked="CancelButton_OnClicked" /&gt;
+                        &lt;/StackLayout&gt;
+                    &lt;/ContentPage&gt;
+
+                </code>
+
+            </div>
+        </div>
+    </div>
+    <div id="bootstrap_overrides" class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="dgb.php.html#collapse2">
+                    Code Example 1</a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+                <pre><code class="language-csharp">
+                        /**
+                        * LoadPage.xaml.cs
+                        * Underlying functionality for the LoadPage XAML form.
+                        * NicholusHuber@gmail.com
+                        */
+                        using System;
+                        using System.Collections.Generic;
+                        using System.Collections.ObjectModel;
+                        using Xamarin.Forms;
+
+                        namespace DGB
+                        {
+                            public partial class LoadPage
+                            {
+                                private List&lt;GameInfo&gt; _gameList;
+                                private readonly IntroPage _introPage;
+                                private readonly List&lt;VisualElement&gt; _buttons;
+
+                                public LoadPage(IntroPage introPage)
+                                {
+                                    InitializeComponent();
+                                    _introPage = introPage;
+                                    _gameList = Player.GetSaveGameInfo();
+                                    _buttons = new List&lt;VisualElement&gt; { _buttonLoad, _buttonDelete, _buttonCancel };
+                                    SetUiScale();
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Sets local UI elements sizes to scale with device resolution.
+                                /// &lt;/summary&gt;
+                                private void SetUiScale()
+                                {
+                                    if(Device.OS == TargetPlatform.iOS) Padding = new Thickness(0,10,0,0);
+
+                                    _imageTextLogo.HeightRequest = App.ScreenHeight * 0.116f;
+                                    _stackLayoutMain.Margin      = App.MarginSize;
+
+                                    _buttonLoad.HeightRequest    = App.ButtonHeight;
+                                    _buttonLoad.WidthRequest     = App.ButtonWidth;
+                                    _buttonLoad.FontSize         = App.FontSizeLarge;
+
+                                    _buttonDelete.HeightRequest  = App.ButtonHeight;
+                                    _buttonDelete.WidthRequest   = App.ButtonWidth;
+                                    _buttonDelete.FontSize       = App.FontSizeLarge;
+
+                                    _buttonCancel.HeightRequest  = App.ButtonHeight;
+                                    _buttonCancel.WidthRequest   = App.ButtonWidth;
+                                    _buttonCancel.FontSize       = App.FontSizeLarge;
+
+                                    SetMainListView();
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Sets any options for the main ListView and its header area.
+                                /// &lt;/summary&gt;
+                                private void SetMainListView()
+                                {
+                                    _gridMainLabels.HeightRequest = App.ButtonHeight;
+                                    _gridMainLabels.Padding = new Thickness(App.MarginSize, 0, App.MarginSize, 0);
+                                    _labelName.FontSize = App.FontSizeLarge;
+                                    _labelDate.FontSize = App.FontSizeLarge;
+                                    var gridCols = new ColumnDefinitionCollection
+                                    {
+                                        new ColumnDefinition {Width = new GridLength(App.ScreenWidth * 0.65f, GridUnitType.Absolute)},
+                                        new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)}
+                                    };
+                                    _gridMainLabels.ColumnDefinitions = gridCols;
+                                    _listViewMain.RowHeight = (int)(App.ButtonHeight * 0.75f);
+                                    _listViewMain.ItemsSource = _gameList;
+                                    _listViewMain.ItemTemplate = CreateDgbTemplate(gridCols);
+                                    _listViewMain.ItemTapped += ListView_OnItemTapped;
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Create and return a custom DataTemplate with x number of columns.
+                                /// &lt;/summary&gt;
+                                /// &lt;param name="columns"&gt;A column collection in either Main or Calculated layout style.&lt;/param&gt;
+                                /// &lt;returns&gt;&lt;/returns&gt;
+                                private DataTemplate CreateDgbTemplate(ColumnDefinitionCollection columns)
+                                {
+                                    return new DataTemplate(() =&gt;
+                                    {
+                                        var grid = new Grid { ColumnDefinitions = columns, Padding = new Thickness(App.MarginSize, 0, App.MarginSize, 0), ColumnSpacing = 5 };
+
+                                        var nameLbl = new Label { FontSize = App.FontSizeMedium, VerticalOptions = LayoutOptions.Center };
+                                        nameLbl.SetBinding(Label.TextProperty, "SessionName");
+                                        grid.Children.Add(nameLbl, 0, 0);
+
+                                        var tagLbl = new Label { FontSize = App.FontSizeMedium, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center };
+                                        tagLbl.SetBinding(Label.TextProperty, "CreationTime");
+                                        grid.Children.Add(tagLbl, 1, 0);
+                                        return new ViewCell { View = grid };
+                                    });
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Called when the load button is clicked.
+                                /// Attempts to load the selected game data and closes the load window.
+                                /// &lt;/summary&gt;
+                                /// &lt;param name="sender"&gt;&lt;/param&gt;
+                                /// &lt;param name="e"&gt;&lt;/param&gt;
+                                private async void LoadButton_OnClicked(object sender, EventArgs e)
+                                {
+                                    var gi = _listViewMain.SelectedItem as GameInfo;
+                                    if (gi == null) return;
+                                    App.EnableElements(_buttons, false);
+                                    _introPage.StartTagRound(Player.LoadGameSession(gi.SessionName));
+                                    await Navigation.PopModalAsync();
+                                    App.EnableElements(_buttons, true);
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Called when the cancel button is clicked.
+                                /// Closes the load game window.
+                                /// &lt;/summary&gt;
+                                /// &lt;param name="sender"&gt;&lt;/param&gt;
+                                /// &lt;param name="e"&gt;&lt;/param&gt;
+                                private async void CancelButton_OnClicked(object sender, EventArgs e)
+                                {
+                                    App.EnableElements(_buttons, false);
+                                    await Navigation.PopModalAsync();
+                                    App.EnableElements(_buttons, true);
+                                }
+
+                                /// &lt;summary&gt;
+                                /// Called when a ListView item is tapped.
+                                /// Enables the LoadGame Button.
+                                /// &lt;/summary&gt;
+                                /// &lt;param name="sender"&gt;&lt;/param&gt;
+                                /// &lt;param name="e"&gt;&lt;/param&gt;
+                                private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+                                {
+                                    if (_listViewMain.SelectedItem != null)
+                                    {
+                                        _buttonLoad.IsEnabled   = true;
+                                        _buttonDelete.IsEnabled = true;
+                                    }
+                                }
+
+                                private async void DeleteButton_OnClicked(object sender, EventArgs e)
+                                {
+                                    var gi = _listViewMain.SelectedItem as GameInfo;
+                                    if (gi == null) return;
+                                    App.EnableElements(_buttons, false);
+                                    var remove = await DisplayAlert("DELETE SAVED GAME", $"Are you sure you want to permanently delete the saved game \"{gi.SessionName}?", "Delete", "Cancel");
+                                    if (!remove) return;
+                                    Player.DeleteGameSession(gi.SessionName);
+                                    await Navigation.PopModalAsync();
+                                    App.EnableElements(_buttons, true);
+                                }
+                            }
+                        }
+
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <div id="bottom">
+                Copyright &#169; Nicholus Huber / Crux Gaming
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
