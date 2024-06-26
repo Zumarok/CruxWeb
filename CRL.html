@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="transitionEnd video">
+
+    <head>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/prism.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+                    <title>Crux Gaming: CRL - In development for a PC release on Steam</title>
+        
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>        
+        <script src="js/core.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/components.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="top">
+                <div>
+                    <a href="index.html"><img alt="Crux Gaming" src="img/Logo.png"/></a>
+                </div>                             
+                <ul class="nav nav-pills">
+                    <li><a href="index.php.html">Home</a></li>                    
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="bf_dps.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Games</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="CRL.html">CRL</a></li>
+                            <li><a href="nblocks.php.html">n Blocks</a></li>
+                            <li><a href="solitaire.php.html">Lucky Club Solitaire</a></li>
+                            <li><a href="zao.php.html">Zao</a></li>
+                            <li><a href="spacetime.php.html">Space-Time</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="bf_dps.php.html#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <strong>Other Projects</strong> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Nahk.html">Nahk: A Productivity Tool</a></li>
+                            <li><a href="bf_dps.php.html">BF Team Builder</a></li>
+                            <li><a href="dgb.php.html">Disc Golf Buddy</a></li>
+                            <li><a href="info.php.html">Info</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                                                     
+            </div>            
+            <div id="middle">
+
+<div class="Panel bordered Panel--large Panel--left">
+    <iframe  width="1120" height="630" src="https://www.youtube.com/embed/fbucAQm1UUU" frameborder="0" allowfullscreen></iframe>
+
+</div>
+
+
+<div class="bs-callout bs-callout-primary" id="callout-inputgroup-container-body">
+    <h4>General Details</h4>
+    <p>A card battler and roguelike inspired game.</p>
+    <p>Climb the tower and find the treasures that wait within. Build a deck, upgrade cards, slay your foes.
+        A solo passion project - Coming soon to Steam.</p>
+    <div class="space-normal"></div>
+    <h4>Technical Details</h4>
+    <p>
+        - Built in Unity.<br>
+        - Fully C# codebase.<br>
+    </p>
+
+
+</div>
+<script src="js/prism.js"></script>
+
+    <div id="bootstrap_overrides" class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse1">
+                    Code Example 1</a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+                <pre><code class="language-csharp">
+                using System;
+                using Crux.CRL.DataSystem;
+                using Crux.CRL.NotificationSystem;
+                using Crux.CRL.Utils;
+                using UnityEngine;
+
+                namespace Crux.CRL.UI
+                {
+                    /// <summary>
+                    /// Base class for all Solo Windows.
+                    /// Provides core window functionality and ensures no more than 1 Solo Window is ever visible.
+                    /// </summary>
+                    public class SoloWindow<T> : SingletonMonoBehaviour<T> where T : MonoBehaviour
+                    {
+                        [SerializeField] protected CanvasGroup canvasGroup;
+                        private int _fadeTweenId;
+                        protected bool IsShowing;
+
+                        protected override void Awake()
+                        {
+                            base.Awake();
+                            NotificationManager.Instance.AddListener<Type>(NotiEvt.UI.OnSoloWindowShow, OnSoloWindowShow);
+                            NotificationManager.Instance.AddListener(NotiEvt.UI.CloseAllSoloWindows, NotificationClose);
+                        }
+
+                        private void OnDestroy()
+                        {
+                            NotificationManager.Instance.RemoveListener<Type>(NotiEvt.UI.OnSoloWindowShow, OnSoloWindowShow);
+                            NotificationManager.Instance.RemoveListener(NotiEvt.UI.CloseAllSoloWindows, NotificationClose);
+                        }
+
+                        public virtual void Show()
+                        {
+                            ToggleVisibility(true);
+                        }
+
+                        public virtual void Hide()
+                        {
+                            ToggleVisibility(false);
+                        }
+
+                        private void NotificationClose()
+                        {
+                            if (IsShowing)
+                                ToggleVisibility(false);
+                        }
+
+                        private void OnSoloWindowShow(Type type)
+                        {
+                            if (IsShowing)
+                                ToggleVisibility(false);
+                        }
+
+                        protected void ToggleVisibility(bool show)
+                        {
+                            LeanTween.cancel(_fadeTweenId);
+                            Action onCompleteAction;
+
+                            if (show)
+                                onCompleteAction = OnShow;
+                            else
+                                onCompleteAction = OnHide;
+
+                            _fadeTweenId = LeanTween.alphaCanvas(canvasGroup, show ? 1 : 0, Constants.WINDOW_FADE_TIME)
+                                .setOnComplete(onCompleteAction).uniqueId;
+                        }
+
+                        protected virtual void OnShow()
+                        {
+                            canvasGroup.SetVisibilityAndInteractive(true);
+                            NotificationManager.Instance.SendNotification(NotiEvt.UI.OnSoloWindowShow, GetType());
+                            IsShowing = true;
+                        }
+
+                        protected virtual void OnHide()
+                        {
+                            canvasGroup.SetVisibilityAndInteractive(false);
+                            IsShowing = false;
+                            NotificationManager.Instance.SendNotification(NotiEvt.UI.OnSoloWindowHide, GetType());
+                        }
+                    }
+                }
+
+                    </code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse2">
+                    Code Example 2</a>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+
+
+                <pre><code class="language-csharp">
+                        using System;
+                        using UnityEngine;
+                        using System.Collections.Generic;
+
+                        namespace Crux.CRL.Utils
+                        {
+                            /// <summary>
+                            /// Cached Yield Instructions to help prevent unnecessary garbage in Unity coroutines.
+                            /// </summary>
+                            public static class WaitFor
+                            {
+                                private class FloatComparer : IEqualityComparer<float>
+                                {
+                                    bool IEqualityComparer<float>.Equals(float x, float y)
+                                    {
+                                        return Math.Abs(x - y) < 0.1f;
+                                    }
+
+                                    int IEqualityComparer<float>.GetHashCode(float obj)
+                                    {
+                                        return obj.GetHashCode();
+                                    }
+                                }
+
+                                private static readonly Dictionary<float, WaitForSeconds> TimeInterval = new Dictionary<float, WaitForSeconds>(100, new FloatComparer());
+
+                                public static WaitForEndOfFrame EndOfFrame { get; } = new WaitForEndOfFrame();
+
+                                public static WaitForFixedUpdate FixedUpdate { get; } = new WaitForFixedUpdate();
+
+                                public static WaitForSeconds Seconds(float seconds)
+                                {
+                                    if (!TimeInterval.TryGetValue(seconds, out var wfs))
+                                        TimeInterval.Add(seconds, wfs = new WaitForSeconds(seconds));
+                                    return wfs;
+                                }
+                            }
+                        }
+
+                    </code></pre>
+
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <div id="bottom">
+                Copyright &#169; Nicholus Huber / Crux Gaming
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
