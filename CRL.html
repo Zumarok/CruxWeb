@@ -70,14 +70,10 @@
 
 <div class="bs-callout bs-callout-primary" id="callout-inputgroup-container-body">
     <h4>General Details</h4>
-    <p>A card battler and roguelike inspired game.</p>
-    <p>Climb the tower and find the treasures that wait within. Build a deck, upgrade cards, slay your foes.</p>
+    <p>A card battler and roguelike inspired game.<br>
+    Climb the tower and find the treasures that wait within. Build a deck, upgrade cards, slay your foes.</p>
     <div class="space-normal"></div>
-    <h4>Technical Details</h4>
-    <p>
-        - Built in Unity.<br>
-        - Fully C# codebase.<br>
-    </p>
+
     <div class="Panel-buttons">
         <a href="https://github.com/Zumarok/CRL" target="_blank" class="Button Button--ghost Panel-button">
             <div class="Button-outer">
@@ -88,163 +84,347 @@
         </a>
     </div>
 
-</div>
-<script src="js/prism.js"></script>
-
-    <div id="bootstrap_overrides" class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse1">
-                    Code Example 1</a>
-            </h4>
-        </div>
-        <div id="collapse1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <pre><code class="language-csharp">
-                using System;
-                using Crux.CRL.DataSystem;
-                using Crux.CRL.NotificationSystem;
-                using Crux.CRL.Utils;
-                using UnityEngine;
-
-                namespace Crux.CRL.UI
-                {
-                    /// <summary>
-                    /// Base class for all Solo Windows.
-                    /// Provides core window functionality and ensures no more than 1 Solo Window is ever visible.
-                    /// </summary>
-                    public class SoloWindow<T> : SingletonMonoBehaviour<T> where T : MonoBehaviour
-                    {
-                        [SerializeField] protected CanvasGroup canvasGroup;
-                        private int _fadeTweenId;
-                        protected bool IsShowing;
-
-                        protected override void Awake()
-                        {
-                            base.Awake();
-                            NotificationManager.Instance.AddListener<Type>(NotiEvt.UI.OnSoloWindowShow, OnSoloWindowShow);
-                            NotificationManager.Instance.AddListener(NotiEvt.UI.CloseAllSoloWindows, NotificationClose);
-                        }
-
-                        private void OnDestroy()
-                        {
-                            NotificationManager.Instance.RemoveListener<Type>(NotiEvt.UI.OnSoloWindowShow, OnSoloWindowShow);
-                            NotificationManager.Instance.RemoveListener(NotiEvt.UI.CloseAllSoloWindows, NotificationClose);
-                        }
-
-                        public virtual void Show()
-                        {
-                            ToggleVisibility(true);
-                        }
-
-                        public virtual void Hide()
-                        {
-                            ToggleVisibility(false);
-                        }
-
-                        private void NotificationClose()
-                        {
-                            if (IsShowing)
-                                ToggleVisibility(false);
-                        }
-
-                        private void OnSoloWindowShow(Type type)
-                        {
-                            if (IsShowing)
-                                ToggleVisibility(false);
-                        }
-
-                        protected void ToggleVisibility(bool show)
-                        {
-                            LeanTween.cancel(_fadeTweenId);
-                            Action onCompleteAction;
-
-                            if (show)
-                                onCompleteAction = OnShow;
-                            else
-                                onCompleteAction = OnHide;
-
-                            _fadeTweenId = LeanTween.alphaCanvas(canvasGroup, show ? 1 : 0, Constants.WINDOW_FADE_TIME)
-                                .setOnComplete(onCompleteAction).uniqueId;
-                        }
-
-                        protected virtual void OnShow()
-                        {
-                            canvasGroup.SetVisibilityAndInteractive(true);
-                            NotificationManager.Instance.SendNotification(NotiEvt.UI.OnSoloWindowShow, GetType());
-                            IsShowing = true;
-                        }
-
-                        protected virtual void OnHide()
-                        {
-                            canvasGroup.SetVisibilityAndInteractive(false);
-                            IsShowing = false;
-                            NotificationManager.Instance.SendNotification(NotiEvt.UI.OnSoloWindowHide, GetType());
-                        }
-                    }
-                }
-
-                    </code></pre>
-            </div>
-        </div>
-    </div>
+    <div class="space-normal"></div>
+    <div class="space-normal"></div>
+    <h4>What's to come for CRL</h4>
+    <p>While most core systems and features are in place, there's still  a lot to do!<br> Here's what's coming up and how I plan to accomplish it.</p>
+    <script src="js/prism.js"></script>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse2">
-                    Code Example 2</a>
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse3">Card Upgrade System</a>
             </h4>
         </div>
-        <div id="collapse2" class="panel-collapse collapse">
+        <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
-
-
-                <pre><code class="language-csharp">
-                        using System;
-                        using UnityEngine;
-                        using System.Collections.Generic;
-
-                        namespace Crux.CRL.Utils
-                        {
-                            /// <summary>
-                            /// Cached Yield Instructions to help prevent unnecessary garbage in Unity coroutines.
-                            /// </summary>
-                            public static class WaitFor
-                            {
-                                private class FloatComparer : IEqualityComparer<float>
-                                {
-                                    bool IEqualityComparer<float>.Equals(float x, float y)
-                                    {
-                                        return Math.Abs(x - y) < 0.1f;
-                                    }
-
-                                    int IEqualityComparer<float>.GetHashCode(float obj)
-                                    {
-                                        return obj.GetHashCode();
-                                    }
-                                }
-
-                                private static readonly Dictionary<float, WaitForSeconds> TimeInterval = new Dictionary<float, WaitForSeconds>(100, new FloatComparer());
-
-                                public static WaitForEndOfFrame EndOfFrame { get; } = new WaitForEndOfFrame();
-
-                                public static WaitForFixedUpdate FixedUpdate { get; } = new WaitForFixedUpdate();
-
-                                public static WaitForSeconds Seconds(float seconds)
-                                {
-                                    if (!TimeInterval.TryGetValue(seconds, out var wfs))
-                                        TimeInterval.Add(seconds, wfs = new WaitForSeconds(seconds));
-                                    return wfs;
-                                }
-                            }
-                        }
-
-                    </code></pre>
-
+                <div class="col-md-offset-2  text-left">
+                    <p>Create a system allowing players to upgrade skill cards using shards, with levels increasing up to 20.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define the data structure for skill cards, including attributes for level and shard requirements.</li>
+                            <li>Create a formula to determine the number of shards required for each level up to 20.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Card Class:</strong>
+                                Extend the current card class to include level and upgrade functionality.</li>
+                            <li>
+                                <strong>Shard System:</strong>
+                                Implement a shard collection system, ensuring compatibility with current card structures.</li>
+                            <li>
+                                <strong>Upgrade Logic:</strong>
+                                Develop the logic to check shard availability and perform the upgrade.</li>
+                            <li>
+                                <strong>UI:</strong>
+                                Design and implement a UI to display card levels, shard count, and upgrade button.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Unit test the upgrade logic.</li>
+                            <li>Test UI for usability and clarity.</li>
+                        </ul>
+                    </ol>
+                </div>
             </div>
         </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse4">Currency Inventory and Card Upgrades</a>
+            </h4>
+        </div>
+        <div id="collapse4" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Develop an inventory system to manage currencies and upgrade cards within the same UI window.<strong>:</strong>
+                    </p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define inventory data structures for card fragments and shards.</li>
+                            <li>Design UI layout for inventory and upgrade interactions.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Inventory Class:</strong>
+                                Create a class to manage inventory items, including stacking logic.</li>
+                            <li>
+                                <strong>Currency Management:</strong>
+                                Implement functions to add, remove, and display currency items.</li>
+                            <li>
+                                <strong>Upgrade Interface:</strong>
+                                Integrate the card upgrade system into the inventory UI.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test inventory functionality, including adding, removing, and combining currencies.</li>
+                            <li>Validate the integration of the upgrade system within the inventory UI.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse5">Currency Drops</a>
+            </h4>
+        </div>
+        <div id="collapse5" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Introduce currency drops and determine their drop rates from enemies.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define drop rates for different enemy types.</li>
+                            <li>Design the loot pool structure to accommodate various currencies.</li>
+                            <li>Design the drop VFX</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Currency Drops:</strong>
+                                Implement drop logic for different enemy types.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test the drop rates and ensure they align with the game's balance requirements.</li>
+                            <li>Validate currency appearance in the player's inventory.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse6">Charm System</a>
+            </h4>
+        </div>
+        <div id="collapse6" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Develop a charm system to provide passive buffs and integrate it with existing buff systems.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define charm attributes and passive effects.</li>
+                            <li>Design UI to display player's current charms.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Charm Class:</strong>
+                                Create a class for charms, including their effects and stacking rules.</li>
+                            <li>
+                                <strong>Buff Integration:</strong>
+                                Modify the existing buff system to incorporate charm effects.</li>
+                            <li>
+                                <strong>UI:</strong>
+                                Develop UI to display equipped charms and their effects.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test charm functionality and ensure effects are correctly applied.</li>
+                            <li>Validate UI display and usability.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse7">New Enemy Races</a>
+            </h4>
+        </div>
+        <div id="collapse7" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Introduce new enemy races with unique skills and design encounters.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Create concept art and define attributes for each enemy type.</li>
+                            <li>Design skill sets for each enemy category (normal, fodder, elite, boss).</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Art Assets:</strong>
+                                Develop and integrate enemy models and animations.</li>
+                            <li>
+                                <strong>Skill Design:</strong>
+                                Implement and assign skills to each enemy.</li>
+                            <li>
+                                <strong>Encounter Design:</strong>
+                                Develop boss encounters and integrate them into the game.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test enemy behaviors and skills in various encounters.</li>
+                            <li>Balance the difficulty of encounters.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse8">More Card Skills</a>
+            </h4>
+        </div>
+        <div id="collapse8" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Introduce 25-35 new player card skills designed for various enemy encounters.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define the mechanics, strengths, and weaknesses of each skill.</li>
+                            <li>Create descriptions and concept art for each card.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Skill Implementation:</strong>
+                                Develop the logic for each skill and integrate them into the existing system.</li>
+                            <li>
+                                <strong>Upgrade Path:</strong>
+                                Design and implement the upgrade paths for each skill.</li>
+                            <li>
+                                <strong>VFX:</strong>
+                                Create and integrate visual effects for each skill.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test skill functionality and balance.</li>
+                            <li>Validate visual and descriptive elements.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse9">SFX and Music</a>
+            </h4>
+        </div>
+        <div id="collapse9" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Enhance the game experience with sound effects and music.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Identify points in the game where SFX and music will be added.</li>
+                            <li>Select or create appropriate audio assets.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>
+                                <strong>Audio Integration:</strong>
+                                Implement the audio system to handle SFX and music using FMOD.</li>
+                            <li>
+                                <strong>Event Triggers:</strong>
+                                Set up triggers for audio playback during gameplay.</li>
+                        </ul>
+                        <li>
+                            <strong>Testing Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Test audio playback and volume levels.</li>
+                            <li>Validate the impact of audio on the overall game experience.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="CRL.html#collapse10">Testing and Refinement</a>
+            </h4>
+        </div>
+        <div id="collapse10" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div class="col-md-offset-2  text-left">
+                    <p>Ensure all systems are working correctly and the game is balanced and polished.</p>
+                    <ol>
+                        <li>
+                            <strong>Design Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Define test cases for each feature and overall gameplay.</li>
+                        </ul>
+                        <li>
+                            <strong>Implementation Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Conduct comprehensive testing of each feature.</li>
+                            <li>Perform playtesting sessions to gather feedback.</li>
+                        </ul>
+                        <li>
+                            <strong>Refinement Phase:</strong>
+                        </li>
+                        <ul>
+                            <li>Address bugs and balance issues identified during testing.</li>
+                            <li>Polish UI, animations, and other game elements.</li>
+                        </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
             </div>
 
             <div id="bottom">
